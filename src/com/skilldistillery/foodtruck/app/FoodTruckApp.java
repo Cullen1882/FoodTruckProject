@@ -1,10 +1,104 @@
 package com.skilldistillery.foodtruck.app;
 
+import java.util.Scanner;
+
+import com.skilldistillery.foodtruck.entities.FoodTruck;
+
 public class FoodTruckApp {
 
+	
+	
+	
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+		Scanner kb = new Scanner(System.in);
+		
+		FoodTruckApp app = new FoodTruckApp();
+
+		
+		int numOfTrucks = 0;
+		int maxTrucks = 5;
+		boolean keepGoing = true;
+		FoodTruck[] trucks = new FoodTruck[maxTrucks];
+		
+		for(int idx = 0; idx < maxTrucks; idx++) {
+		FoodTruck truck = new FoodTruck();
+		
+		System.out.println("Enter name of Truck: ");
+		String name = kb.next();
+		if (name.equalsIgnoreCase("Quit")){
+			break;
+		}
+		else {
+		truck.setName(name);
+		
+		}
+		System.out.println("Enter food type: ");
+		truck.setCuisineType(kb.next());
+		System.out.println("Enter Truck rating: ");
+		truck.setRating(kb.nextInt());
+		truck.setTruckId(idx);
+		trucks[idx] = truck;
+		numOfTrucks++;
+		
+		}
+		while (keepGoing) {
+			System.out.println("1) List all existing food trucks");
+			System.out.println("2) See the average rating of food trucks");
+			System.out.println("3) See the highest rated food truck");
+			System.out.println("4) Quit the program");
+			int userMenuChoice = kb.nextInt();
+			
+			
+			switch (userMenuChoice) {
+			case 1:
+				app.getTrucks(trucks, numOfTrucks);
+				break;
+			case 2:
+				app.getAverage(trucks, numOfTrucks);
+				break;
+			case 3:
+				app.getHighest(trucks, numOfTrucks);
+				break;
+			case 4:
+				System.out.println("Thank you for using the Food Truck App, GoodBye!");
+				keepGoing = false;
+			default:
+				System.out.println("ERROR: Please make another choice.");
+				break;
+			}
+		}
+		
 	}
-
+//getTrucks()
+	public void getTrucks(FoodTruck[] trucks, int numTruck) {
+		for(int i = 0; i < numTruck; i++) {
+			System.out.println(trucks[i]);
+			
+		}
+	}
+//getAverage
+	public void getAverage(FoodTruck[] trucks,int numTruck) {
+		double sumRats = 0;
+		double average = (sumRats / numTruck);
+		for(int i = 0; i < numTruck; i++) {
+			trucks[i].getRating();
+			double sum = trucks[i].getRating();
+			sumRats += sum;	
+		}
+		System.out.println("The average rating for the trucks provided is: " + average);
+	}
+//getHighest
+	public void getHighest(FoodTruck[] trucks, int numTruck) {
+		int highest = 0;
+		for (int i = 0; i < numTruck; i++) {
+			highest = trucks[i].getRating();
+			if (highest < trucks[i+1].getRating()) {
+				highest = trucks[i+1].getRating();
+			}
+			System.out.println("The highest rating for the trucks provided is: " + highest);
+			
+		}
+	}
 }
