@@ -33,6 +33,6 @@ public class FoodTruck {
 	}
 	public String toString() {
 	     
-	    return "Truck name: " + name + "Truck ID: " + truckId + " Truck cuisine: " + cuisineType + " Rating: " + rating;
+	    return "\n Truck name: " + name + "\n Truck ID: " + truckId + "\n Truck cuisine: " + cuisineType + "\n Rating: " + rating;
 	}
 }
