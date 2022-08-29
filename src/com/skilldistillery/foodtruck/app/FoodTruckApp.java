@@ -20,7 +20,7 @@ public class FoodTruckApp {
 		for (int idx = 0; idx < maxTrucks; idx++) {
 			FoodTruck truck = new FoodTruck();
 
-			System.out.print("Enter name of Truck: ");
+			System.out.print("Enter name of Truck, type Quit in truck name to stop entering trucks: ");
 			String name = kb.next();
 			if (name.equalsIgnoreCase("Quit")) {
 				break;
